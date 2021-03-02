@@ -20,12 +20,17 @@ const handleRegister = (req, res, db, bcrypt) => {
                         joined: new Date()
                     })
                     .then(user => {
+                        console.log(user)
                         res.json(user[0])
                     })
-                    .catch(err => res.status(400).json('Unable to register'))
+                    .catch(err => {
+                        console.log(err)
+                        res.status(400).json('Unable to register')
+                    })
             })
             .then(trx.commit)
             .catch(err => {
+                console.log(err)
                 trx.rollback
                 res.status(400).json('Unable to register')
             })
