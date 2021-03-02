@@ -30,10 +30,7 @@ app.use(express.json())
 
 
 // GET --> returns all users
-app.get('/', (req, res) => {
-    res.json(database.users)
-})
-
+app.get('/', (req, res) => {res.json("It's working")})
 
 // POST --> check user signin creds and login
 app.post('/signin', (req, res) => {handleSignin(req, res, db, bcrypt)})
@@ -52,7 +49,8 @@ app.put('/image', (req, res) => {handleImageEntries(req, res, db)})
 app.post('/imageApi', (req, res) => {handleApiCall(req, res)})
 
 
+const PORT = process.env.PORT || 3000;
 // Listening on Port 3000
-app.listen(process.env.PORT, () => {
-    console.log(`Node is running on port ${process.env.PORT}`)
+app.listen(PORT, () => {
+    console.log(`Node is running on port ${PORT}`)
 })
