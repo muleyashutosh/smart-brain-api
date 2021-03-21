@@ -5,14 +5,14 @@ const handleRegister = (req, res, db, bcrypt) => {
     }
     const hash = bcrypt.hashSync(password, 10);
     db.transaction(trx => {
-        db.insert({
+        trx.insert({
                 hash:hash,
                 email: email
             })
             .into('login')
             .returning('email')
             .then(loginEmail => {
-                db('users')
+                trx('users')
                     .returning('*')
                     .insert({
                         name: name,
