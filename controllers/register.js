@@ -32,7 +32,7 @@ const handleRegister = (req, res, db, bcrypt) => {
       .then(trx.commit)
       .catch((err) => {
         console.log(err);
-        if (err.includes("duplicate key value")) {
+        if (err.toString().includes("duplicate key value")) {
           ErrorMessage = "User Already Exists";
         }
         trx.rollback;
